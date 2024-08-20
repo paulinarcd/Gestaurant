@@ -123,7 +123,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         tfRolUsuario = new javax.swing.JComboBox<>();
         btnRegsitrarUsuario = new javax.swing.JButton();
-        btnEliminarUsuario = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaUsuario = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -635,11 +634,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarUsuario.setBackground(new java.awt.Color(153, 204, 255));
-        btnEliminarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEliminarUsuario.setText("Eliminar");
-        btnEliminarUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-
         tablaUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         tablaUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -668,12 +662,11 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnlRegistroUsuLayout.createSequentialGroup()
                 .addGap(68, 68, 68)
-                .addGroup(pnlRegistroUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlRegistroUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlRegistroUsuLayout.createSequentialGroup()
-                        .addComponent(btnRegsitrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(98, 98, 98)
+                        .addComponent(btnRegsitrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -688,9 +681,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegistroUsuLayout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(pnlRegistroUsuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegsitrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRegsitrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36))
         );
@@ -1054,21 +1045,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarPlatoActionPerformed
 
     private void btnEliminarPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPlatoActionPerformed
-        if ("".equals(IdPlato.getText())) {
-            JOptionPane.showMessageDialog(null, "Seleecione una fila");
-        } else {
-            if (!"".equals(tfNombrePlato.getText()) || !"".equals(tfPrecioPlato.getText())) {
-                pla.setNombre(tfNombrePlato.getText());
-                pla.setPrecio(Double.parseDouble(tfPrecioPlato.getText()));
-                pla.setId(Integer.parseInt(IdPlato.getText()));
-                if (plaFunc.Modificar(pla)) {
-                    JOptionPane.showMessageDialog(null, "Plato Modificado");
-                    LimpiarTabla();
-                    ListarPlatos(TablaPlato);
-                    LimpiarPlatos();
-                }
-
+        if (!"".equals(IdPlato.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de eliminar");
+            if (pregunta == 0) {
+                int id = Integer.parseInt(IdPlato.getText());
+                plaFunc.Eliminar(id);
+                LimpiarTabla();
+                LimpiarPlatos();
+                ListarPlatos(TablaPlato);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
         }
     }//GEN-LAST:event_btnEliminarPlatoActionPerformed
 
@@ -1151,7 +1138,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizarSala;
     private javax.swing.JButton btnEliminarPlato;
     private javax.swing.JButton btnEliminarSala;
-    private javax.swing.JButton btnEliminarUsuario;
     private javax.swing.JButton btnGuardarPedido;
     private javax.swing.JButton btnNuevaSala;
     private javax.swing.JButton btnRegistrarPlato;
