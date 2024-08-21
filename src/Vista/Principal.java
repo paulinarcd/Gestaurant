@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Modelo.Eventos;
 import Modelo.DetallePedido;
 import Modelo.Pedido;
 import Modelo.PedidoFunc;
@@ -36,7 +37,7 @@ public class Principal extends javax.swing.JFrame {
     
     Sala sala = new Sala();
     SalaFunc salaFunc = new SalaFunc();
-    
+    Eventos event = new Eventos();
     UsuarioFunc UsuFunc = new UsuarioFunc();
     
     Plato pla = new Plato();
@@ -60,6 +61,7 @@ public class Principal extends javax.swing.JFrame {
     DefaultTableModel tmp = new DefaultTableModel();
     
     int item;
+    
     
     public Principal() {
         initComponents();
@@ -87,7 +89,7 @@ public class Principal extends javax.swing.JFrame {
         btnAddPl = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtComent = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         TablaMenu = new javax.swing.JTable();
@@ -97,7 +99,7 @@ public class Principal extends javax.swing.JFrame {
         numMesaPed = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        btnEliminarPl = new javax.swing.JButton();
+        btnEliminarPed = new javax.swing.JButton();
         btnGuardarPedido = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -160,6 +162,7 @@ public class Principal extends javax.swing.JFrame {
         btnActualizarPlato = new javax.swing.JButton();
         btnEliminarPlato = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        btnNuevoPlato = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         txtVendedor = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -173,6 +176,11 @@ public class Principal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(153, 204, 255));
 
         jTabbedPane1.setBackground(new java.awt.Color(153, 204, 255));
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         PanelSalas.setBackground(new java.awt.Color(255, 255, 255));
         PanelSalas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
@@ -222,13 +230,10 @@ public class Principal extends javax.swing.JFrame {
 
         TablaPlato2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Nombre", "Precio"
+                "", "Nombre", "Precio"
             }
         ));
         jScrollPane5.setViewportView(TablaPlato2);
@@ -271,21 +276,18 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        txtComent.setColumns(20);
+        txtComent.setRows(5);
+        jScrollPane4.setViewportView(txtComent);
 
         jLabel12.setText("Comentario:");
 
         TablaMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Plato", "Cantidad", "Subtotal", "Comentario"
+                "", "Plato", "Cantidad", "Precio", "Subtotal", "Comentario"
             }
         ));
         jScrollPane6.setViewportView(TablaMenu);
@@ -312,10 +314,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarPl.setText("Eliminar");
-        btnEliminarPl.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminarPed.setText("Eliminar");
+        btnEliminarPed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarPlActionPerformed(evt);
+                btnEliminarPedActionPerformed(evt);
             }
         });
 
@@ -346,7 +348,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jScrollPane4)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnEliminarPl, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnEliminarPed, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -388,7 +390,7 @@ public class Principal extends javax.swing.JFrame {
                                         .addGap(14, 14, 14)
                                         .addComponent(jButton2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnEliminarPl)))
+                                        .addComponent(btnEliminarPed)))
                                 .addGap(35, 35, 35)
                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -912,6 +914,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        tfPrecioPlato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPrecioPlatoKeyTyped(evt);
+            }
+        });
+
         IdPlato.setText("ID");
         IdPlato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1011,12 +1019,24 @@ public class Principal extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel15.setText("Registrar Platos");
 
+        btnNuevoPlato.setBackground(new java.awt.Color(153, 204, 255));
+        btnNuevoPlato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevoPlato.setText("Añadir nuevo plato");
+        btnNuevoPlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoPlatoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(btnRegistrarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1025,8 +1045,8 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(btnEliminarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(187, 187, 187)
+                        .addComponent(btnNuevoPlato)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
@@ -1037,20 +1057,24 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel15)
-                .addGap(92, 92, 92)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel15)
+                        .addGap(92, 92, 92)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEliminarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnActualizarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistrarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNuevoPlato, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                        .addGap(11, 11, 11))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
 
@@ -1272,7 +1296,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_tfBuscarPlatoActionPerformed
 
     private void btnAddPlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPlActionPerformed
-        // TODO add your handling code here:
+
         if (TablaPlato2.getSelectedRow() >= 0) {
             int id = Integer.parseInt(TablaPlato2.getValueAt(TablaPlato2.getSelectedRow(), 0).toString());
             String descripcion = TablaPlato2.getValueAt(TablaPlato2.getSelectedRow(), 1).toString();
@@ -1281,7 +1305,8 @@ public class Principal extends javax.swing.JFrame {
             item = item + 1;
             tmp = (DefaultTableModel) TablaMenu.getModel();
             for (int i = 0; i < TablaMenu.getRowCount(); i++) {
-                if (TablaMenu.getValueAt(i, 0).equals(id)) {
+                Object idValue = TablaMenu.getValueAt(i, 0);
+                if (idValue != null && idValue.equals(id)) {
                     int cantActual = Integer.parseInt(TablaMenu.getValueAt(i, 2).toString());
                     int nuevoCantidad = cantActual + 1;
                     double nuevoSub = precio * nuevoCantidad;
@@ -1338,14 +1363,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (jTextArea1.getText().equals("")) {
+        if (txtComent.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA");
         } else{
             int id = Integer.parseInt(TablaMenu.getValueAt(TablaMenu.getSelectedRow(),0).toString());
             for (int i = 0; i < TablaMenu.getRowCount(); i++) { 
                 if (TablaMenu.getValueAt(i, 0).equals(id)) { 
-                    tmp.setValueAt(jTextArea1.getText(), i, 5);
-                    jTextArea1.setText("");
+                    tmp.setValueAt(txtComent.getText(), i, 5);
+                    txtComent.setText("");
                     TablaMenu.clearSelection();
                     return;
                 }
@@ -1353,11 +1378,11 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnEliminarPlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPlActionPerformed
+    private void btnEliminarPedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPedActionPerformed
         modelo = (DefaultTableModel) TablaMenu.getModel();
         modelo.removeRow((TablaMenu.getSelectedRow()));
         TotalPagar(TablaMenu, txTotalPed);
-    }//GEN-LAST:event_btnEliminarPlActionPerformed
+    }//GEN-LAST:event_btnEliminarPedActionPerformed
 
     private void txtIdSalaFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdSalaFinalActionPerformed
         // TODO add your handling code here:
@@ -1397,6 +1422,20 @@ public class Principal extends javax.swing.JFrame {
         LimpiarTabla();
         ListarPlatos(TablaPlato2);
     }//GEN-LAST:event_tfBuscarPlatoKeyReleased
+
+    private void btnNuevoPlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPlatoActionPerformed
+        // TODO add your handling code here:
+        LimpiarPlatos();
+    }//GEN-LAST:event_btnNuevoPlatoActionPerformed
+
+    private void tfPrecioPlatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrecioPlatoKeyTyped
+        event.numberDecimalKeyPress(evt, tfPrecioPlato);
+    }//GEN-LAST:event_tfPrecioPlatoKeyTyped
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1446,12 +1485,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnActualizarPlato;
     private javax.swing.JButton btnActualizarSala;
     private javax.swing.JButton btnAddPl;
-    private javax.swing.JButton btnEliminarPl;
+    private javax.swing.JButton btnEliminarPed;
     private javax.swing.JButton btnEliminarPlato;
     private javax.swing.JButton btnEliminarSala;
     private javax.swing.JButton btnFinaliz;
     private javax.swing.JButton btnGuardarPedido;
     private javax.swing.JButton btnNuevaSala;
+    private javax.swing.JButton btnNuevoPlato;
     private javax.swing.JButton btnRegistrarPlato;
     private javax.swing.JButton btnRegistrarSala;
     private javax.swing.JButton btnRegsitrarUsuario;
@@ -1502,7 +1542,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField numMesaPed;
     private javax.swing.JPanel pnlRegistroUsu;
     private javax.swing.JTable tablaUsuario;
@@ -1519,6 +1558,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> tfRolUsuario;
     private javax.swing.JLabel totalFin;
     private javax.swing.JLabel txTotalPed;
+    private javax.swing.JTextArea txtComent;
     private javax.swing.JTextField txtIdHistorialPed;
     private javax.swing.JTextField txtIdPed;
     private javax.swing.JTextField txtIdSalaFinal;
@@ -1567,22 +1607,6 @@ public class Principal extends javax.swing.JFrame {
    
     }
     
-    
-    private void ListarPlatos(JTable tabla) {
-        List<Plato> Listar = plaFunc.Listar(tfBuscarPlato.getText(), fecha);
-        modelo = (DefaultTableModel) tabla.getModel();
-        Object[] ob = new Object[3];
-        for (int i = 0; i < Listar.size(); i++) {
-            ob[0] = Listar.get(i).getId();
-            ob[1] = Listar.get(i).getNombre();
-            ob[2] = Listar.get(i).getPrecio();
-            modelo.addRow(ob);
-        }
-
-    }
-    
-    
-    
     private void LimpiarPlatos() {
         IdPlato.setText("");
         tfNombrePlato.setText("");
@@ -1611,6 +1635,18 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
+    private void ListarPlatos(JTable tabla) {
+        List<Plato> Listar = plaFunc.Listar(tfBuscarPlato.getText(), fecha);
+        modelo = (DefaultTableModel) tabla.getModel();
+        Object[] ob = new Object[3];
+        for (int i = 0; i < Listar.size(); i++) {
+            ob[0] = Listar.get(i).getId();
+            ob[1] = Listar.get(i).getNombre();
+            ob[2] = Listar.get(i).getPrecio();
+            modelo.addRow(ob);
+        }
+        
+    }
 
     private void RegistrarPedido() {
         int id_sala = Integer.parseInt(IdSalaPed.getText());
@@ -1623,15 +1659,7 @@ public class Principal extends javax.swing.JFrame {
         pedFunc.RegistrarPedido(ped);
     }
     
-    public void verPedido(int id_pedido) {
-        ped = pedFunc.verPedido(id_pedido);
-        totalFin.setText("" + ped.getTotal());
-        txtIdSalaFinal.setText("" + ped.getSala());
-        txtNumMesaFinal.setText("" + ped.getNum_mesa());
-        txtIdPed.setText("" + ped.getId());
-    }
-    
-        private void detallePedido() {
+     private void detallePedido() {
         int id = pedFunc.IdPedido();
         for (int i = 0; i < TablaMenu.getRowCount(); i++) {
             String nombre = TablaMenu.getValueAt(i, 1).toString();
@@ -1646,8 +1674,7 @@ public class Principal extends javax.swing.JFrame {
 
         }
     }
-        
-        
+     
 public void verDetallePedido(int id_pedido) {
         List<DetallePedido> Listar = pedFunc.verPedidoDetalle(id_pedido);
         modelo = (DefaultTableModel) tblFinalizar.getModel();
@@ -1663,6 +1690,15 @@ public void verDetallePedido(int id_pedido) {
         }
         colorHeader(tblFinalizar);
     }
+    
+    public void verPedido(int id_pedido) {
+        ped = pedFunc.verPedido(id_pedido);
+        totalFin.setText("" + ped.getTotal());
+        txtIdSalaFinal.setText("" + ped.getSala());
+        txtNumMesaFinal.setText("" + ped.getNum_mesa());
+        txtIdPed.setText("" + ped.getId());
+    } 
+ 
 
     private void colorHeader(JTable tblFinalizar) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
