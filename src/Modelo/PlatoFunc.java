@@ -44,10 +44,10 @@ public class PlatoFunc {
         }
     }
 
-    public List Listar(String valor, String fecha) {
+    public List Listar(String valor) {
         List<Plato> Lista = new ArrayList();
-        String sql = "SELECT * FROM platos WHERE fecha = ?";
-        String consulta = "SELECT * FROM platos WHERE nombre LIKE '%"+valor+"%' AND fecha = ?";
+        String sql = "SELECT * FROM platos ";
+        String consulta = "SELECT * FROM platos WHERE nombre LIKE '%"+valor+"%' ";
         try {
             con = cn.getConnection();
             if(valor.equalsIgnoreCase("")){
@@ -55,7 +55,7 @@ public class PlatoFunc {
             }else{
                 ps = con.prepareStatement(consulta);
             }
-            ps.setString(1, fecha);
+            
             rs = ps.executeQuery();
             while (rs.next()) {
                 Plato pl = new Plato();
