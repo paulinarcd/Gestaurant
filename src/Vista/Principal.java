@@ -10,6 +10,7 @@ import Modelo.Pedido;
 import Modelo.PedidoFunc;
 import Modelo.Plato;
 import Modelo.PlatoFunc;
+import Modelo.Reportes;
 import Modelo.Sala;
 import Modelo.SalaFunc;
 import Modelo.Tablas;
@@ -18,10 +19,13 @@ import Modelo.UsuarioFunc;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -53,6 +57,9 @@ public class Principal extends javax.swing.JFrame {
     Pedido ped = new Pedido();
     PedidoFunc pedFunc = new PedidoFunc();
     DetallePedido detPed = new DetallePedido();
+    
+    
+     Reportes reportes = new Reportes();
     
     
     double Totalpagar = 0.00;
@@ -194,6 +201,12 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaUsuario = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+        pnlResportes = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        btnReporteDiario = new javax.swing.JButton();
+        btnReporteMensual = new javax.swing.JButton();
+        btnReportePlato = new javax.swing.JButton();
+        txtmes = new javax.swing.JComboBox<>();
         jPanel11 = new javax.swing.JPanel();
         txtVendedor = new javax.swing.JLabel();
         lbTitulo = new javax.swing.JPanel();
@@ -1110,6 +1123,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel9.setText("Rol:");
 
         tfRolUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Mesero", "Chef", " " }));
+        tfRolUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfRolUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1210,6 +1228,95 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Registrar Usuarios", pnlRegistroUsu);
+
+        pnlResportes.setBackground(new java.awt.Color(255, 255, 255));
+        pnlResportes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        pnlResportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlResportesMouseClicked(evt);
+            }
+        });
+
+        jPanel13.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        jPanel13.setForeground(new java.awt.Color(102, 204, 255));
+
+        btnReporteDiario.setText("Reporte Diario");
+        btnReporteDiario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        btnReporteDiario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteDiarioActionPerformed(evt);
+            }
+        });
+
+        btnReporteMensual.setText("Reporte Mensual");
+        btnReporteMensual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        btnReporteMensual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteMensualActionPerformed(evt);
+            }
+        });
+
+        btnReportePlato.setText("Reporte Venta por Plato");
+        btnReportePlato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        btnReportePlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportePlatoActionPerformed(evt);
+            }
+        });
+
+        txtmes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        txtmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtmesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtmes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReporteMensual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReporteDiario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReportePlato, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(btnReporteDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(btnReporteMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(btnReportePlato, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlResportesLayout = new javax.swing.GroupLayout(pnlResportes);
+        pnlResportes.setLayout(pnlResportesLayout);
+        pnlResportesLayout.setHorizontalGroup(
+            pnlResportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlResportesLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(658, Short.MAX_VALUE))
+        );
+        pnlResportesLayout.setVerticalGroup(
+            pnlResportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlResportesLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Reportes", pnlResportes);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1601,6 +1708,12 @@ public class Principal extends javax.swing.JFrame {
         if (tabIndex == 4) {
             ListarPedidos();
         }
+        
+        List<String> meses = reportes.obtenerMesesDisponibles();
+        for (String mes : meses) {
+            setVisible(true);
+            txtmes.addItem(mes);
+        }
        
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
@@ -1619,6 +1732,48 @@ public class Principal extends javax.swing.JFrame {
             txtIdHistorialPed.setText("");
         }
     }//GEN-LAST:event_btnPDFActionPerformed
+
+    private void btnReporteDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteDiarioActionPerformed
+
+        try {
+            reportes.generarReporteVentasPorDiaEnPDF();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Reporte de Ventas por Día generado con éxito.");
+        
+    }//GEN-LAST:event_btnReporteDiarioActionPerformed
+
+    private void btnReportePlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePlatoActionPerformed
+        try {
+            reportes.generarReporteCantidadPorPlatoEnPDF();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Reporte de Cantidad por Plato generado con éxito.");
+    }//GEN-LAST:event_btnReportePlatoActionPerformed
+
+    private void btnReporteMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteMensualActionPerformed
+        String mesSeleccionado = (String) txtmes.getSelectedItem();
+        try {
+            reportes.generarReporteVentasPorMesEnPDF(mesSeleccionado);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReporteMensualActionPerformed
+
+    private void txtmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmesActionPerformed
+
+        
+    }//GEN-LAST:event_txtmesActionPerformed
+
+    private void tfRolUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRolUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfRolUsuarioActionPerformed
+
+    private void pnlResportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlResportesMouseClicked
+
+    }//GEN-LAST:event_pnlResportesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1685,6 +1840,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarPlato;
     private javax.swing.JButton btnRegistrarSala;
     private javax.swing.JButton btnRegsitrarUsuario;
+    private javax.swing.JButton btnReporteDiario;
+    private javax.swing.JButton btnReporteMensual;
+    private javax.swing.JButton btnReportePlato;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1716,6 +1874,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel1S;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1741,6 +1900,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel lbTitulo;
     private javax.swing.JTextField numMesaPed;
     private javax.swing.JPanel pnlRegistroUsu;
+    private javax.swing.JPanel pnlResportes;
     private javax.swing.JTable tablaUsuario;
     private javax.swing.JTable tblFinalizar;
     private javax.swing.JTextField tfBuscarPlato;
@@ -1761,6 +1921,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdSalaFinal;
     private javax.swing.JTextField txtNumMesaFinal;
     private javax.swing.JLabel txtVendedor;
+    private javax.swing.JComboBox<String> txtmes;
     // End of variables declaration//GEN-END:variables
 
     private void LimpiarSala() {
