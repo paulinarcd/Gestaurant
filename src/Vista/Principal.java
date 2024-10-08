@@ -187,6 +187,8 @@ public class Principal extends javax.swing.JFrame {
         btnEliminarPlato = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         btnNuevoPlato = new javax.swing.JButton();
+        btnDesactPlat = new javax.swing.JButton();
+        btnActPlat = new javax.swing.JButton();
         pnlRegistroUsu = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -1041,6 +1043,26 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnDesactPlat.setBackground(new java.awt.Color(153, 204, 255));
+        btnDesactPlat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDesactPlat.setText("Deshabilitar");
+        btnDesactPlat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        btnDesactPlat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesactPlatActionPerformed(evt);
+            }
+        });
+
+        btnActPlat.setBackground(new java.awt.Color(153, 204, 255));
+        btnActPlat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActPlat.setText("Habilitar");
+        btnActPlat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        btnActPlat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActPlatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1048,19 +1070,27 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(btnRegistrarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(btnEliminarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addComponent(btnActualizarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(185, 185, 185)
+                                .addComponent(btnNuevoPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnDesactPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(btnRegistrarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(btnEliminarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(btnActualizarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(btnNuevoPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1075,8 +1105,15 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnDesactPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnActPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEliminarPlato, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1775,6 +1812,52 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_pnlResportesMouseClicked
 
+    private void btnDesactPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesactPlatActionPerformed
+        int filaSeleccionada = TablaPlato.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            // Obtener el ID del plato seleccionado en la tabla
+            int idPlato = (int) TablaPlato.getValueAt(filaSeleccionada, 0);
+
+            // Deshabilitar el plato utilizando el método de PlatoFunc
+            if (!plaFunc.estaDeshabilitado(idPlato)) {
+                plaFunc.deshabilitarPlato(idPlato);
+                JOptionPane.showMessageDialog(this, "Plato deshabilitado correctamente.");
+
+                // Recargar la tabla para actualizar los platos disponibles
+                cargarPlatosDisponibles();
+            } else {
+                JOptionPane.showMessageDialog(this, "El plato ya está deshabilitado.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un plato para deshabilitar.");
+        }
+
+    }//GEN-LAST:event_btnDesactPlatActionPerformed
+
+    private void btnActPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActPlatActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = TablaPlato.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            // Obtener el ID del plato seleccionado en la tabla
+            int idPlato = (int) TablaPlato.getValueAt(filaSeleccionada, 0);
+
+            // Habilitar el plato utilizando el método de PlatoFunc
+            if (plaFunc.estaDeshabilitado(idPlato)) {
+                plaFunc.habilitarPlato(idPlato);
+                JOptionPane.showMessageDialog(this, "Plato habilitado correctamente.");
+
+                // Recargar la tabla para actualizar los platos disponibles
+                cargarPlatosDisponibles();
+            } else {
+                JOptionPane.showMessageDialog(this, "El plato ya está habilitado.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona un plato para habilitar.");
+        }
+    }//GEN-LAST:event_btnActPlatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1825,10 +1908,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable TablaPlato2;
     private javax.swing.JTable TablaSala;
     private javax.swing.JTable TblPedidos;
+    private javax.swing.JButton btnActPlat;
     private javax.swing.JButton btnActualizarPlato;
     private javax.swing.JButton btnActualizarSala;
     private javax.swing.JButton btnAddPl;
     private javax.swing.JButton btnAgregarpedido;
+    private javax.swing.JButton btnDesactPlat;
     private javax.swing.JButton btnEliminarPed;
     private javax.swing.JButton btnEliminarPlato;
     private javax.swing.JButton btnEliminarSala;
@@ -2128,6 +2213,18 @@ public void verDetallePedido(int id_pedido) {
                     numMesaPed.setText("" + num_mesa);
                 }
             });
+        }
+    }
+
+    private void cargarPlatosDisponibles() {
+        modelo.setRowCount(0);
+        
+        // Obtener lista de platos disponibles
+        List<Plato> platos = plaFunc.Listar("");
+        
+        // Agregar cada plato disponible a la tabla
+        for (Plato plato : platos) {
+            modelo.addRow(new Object[]{plato.getId(), plato.getNombre(), plato.getPrecio()});
         }
     }
 

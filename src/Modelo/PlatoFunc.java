@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -22,6 +24,8 @@ public class PlatoFunc {
     PreparedStatement ps;
     ResultSet rs;
 
+    private Set<Integer> platosDeshabilitados = new HashSet<>();
+    
     public boolean Registrar(Plato pla) {
         String sql = "INSERT INTO platos (nombre, precio, fecha) VALUES (?,?,?)";
         try {
@@ -58,12 +62,16 @@ public class PlatoFunc {
             
             rs = ps.executeQuery();
             while (rs.next()) {
-                Plato pl = new Plato();
-                pl.setId(rs.getInt("id"));
-                pl.setNombre(rs.getString("nombre"));
-                pl.setPrecio(rs.getDouble("precio"));
-                Lista.add(pl);
-            }
+                int id = rs.getInt("id");
+
+                // Solo agregar a la lista si el plato NO está deshabilitado
+                if (!platosDeshabilitados.contains(id)) {
+                    Plato pl = new Plato();
+                    pl.setId(id);
+                    pl.setNombre(rs.getString("nombre"));
+                    pl.setPrecio(rs.getDouble("precio"));
+                    Lista.add(pl);
+                }}
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
@@ -109,6 +117,14 @@ public class PlatoFunc {
             }
         }
     }
-
+    public void deshabilitarPlato(int id) {
+        platosDeshabilitados.add(id);  
+    }
+    public void habilitarPlato(int id) {
+        platosDeshabilitados.remove(id); 
+    }
+    public boolean estaDeshabilitado(int id) {
+        return platosDeshabilitados.contains(id);
+    }
     
 }
