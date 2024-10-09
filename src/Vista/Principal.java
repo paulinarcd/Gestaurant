@@ -139,7 +139,7 @@ public class Principal extends javax.swing.JFrame {
         btnGuardarPedido = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        btnGuardarPedido1 = new javax.swing.JButton();
+        btnReservar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
@@ -428,13 +428,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel18.setText("Mesa");
 
-        btnGuardarPedido1.setBackground(new java.awt.Color(153, 204, 255));
-        btnGuardarPedido1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnGuardarPedido1.setText("Guardar Pedido");
-        btnGuardarPedido1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
-        btnGuardarPedido1.addActionListener(new java.awt.event.ActionListener() {
+        btnReservar.setBackground(new java.awt.Color(153, 204, 255));
+        btnReservar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReservar.setText("Reservar");
+        btnReservar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        btnReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarPedido1ActionPerformed(evt);
+                btnReservarActionPerformed(evt);
             }
         });
 
@@ -448,7 +448,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAgregarpedido, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,10 +465,7 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(numMesaPed, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(124, 124, 124)
                                     .addComponent(btnGuardarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel18)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(210, 210, 210)
-                                    .addComponent(btnGuardarPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel18))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel13)
@@ -476,7 +473,8 @@ public class Principal extends javax.swing.JFrame {
                                     .addGap(6, 6, 6)
                                     .addComponent(txTotalPed, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(200, 200, 200)
+                            .addComponent(btnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(78, 78, 78)
                             .addComponent(jLabel14))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -490,7 +488,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(btnReservar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -502,16 +502,14 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txTotalPed))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
-                                .addComponent(btnGuardarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(btnGuardarPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGuardarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(IdSalaPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -519,7 +517,8 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel17)
-                                    .addComponent(jLabel18)))))
+                                    .addComponent(jLabel18))))
+                        .addGap(30, 30, 30))
                     .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1909,7 +1908,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnActPlatActionPerformed
 
-    private void btnGuardarPedido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPedido1ActionPerformed
+    private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed
     if (mesaSeleccionada != -1) {  // Verificar que haya una mesa seleccionada
         int id_sala = Integer.parseInt(IdSalaPed.getText());  // Obtener la sala actual (ya lo tienes disponible)
         
@@ -1935,7 +1934,7 @@ public class Principal extends javax.swing.JFrame {
     } else {
         JOptionPane.showMessageDialog(null, "Seleccione una mesa antes de reservar.");
     }
-    }//GEN-LAST:event_btnGuardarPedido1ActionPerformed
+    }//GEN-LAST:event_btnReservarActionPerformed
 
     private void btnReportePlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePlatoActionPerformed
         try {
@@ -2020,7 +2019,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarSala;
     private javax.swing.JButton btnFinaliz;
     private javax.swing.JButton btnGuardarPedido;
-    private javax.swing.JButton btnGuardarPedido1;
     private javax.swing.JButton btnNuevaSala;
     private javax.swing.JButton btnNuevoPlato;
     private javax.swing.JButton btnPDF;
@@ -2030,6 +2028,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnReporteDiario;
     private javax.swing.JButton btnReporteMensual;
     private javax.swing.JButton btnReportePlato;
+    private javax.swing.JButton btnReservar;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
