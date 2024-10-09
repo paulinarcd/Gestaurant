@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class SalaFunc {
     
-        Connection con;
+    Connection con;
     Conexion cn = new Conexion();
     PreparedStatement ps;
     ResultSet rs;

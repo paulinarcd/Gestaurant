@@ -17,6 +17,7 @@ import Modelo.Tablas;
 import Modelo.Usuario;
 import Modelo.UsuarioFunc;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
@@ -68,6 +69,7 @@ public class Principal extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel tmp = new DefaultTableModel();
     
+    private int mesaSeleccionada = -1;
     int item;
     
     
@@ -137,6 +139,7 @@ public class Principal extends javax.swing.JFrame {
         btnGuardarPedido = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        btnGuardarPedido1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
@@ -206,9 +209,12 @@ public class Principal extends javax.swing.JFrame {
         pnlResportes = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         btnReporteDiario = new javax.swing.JButton();
+        txtdia = new javax.swing.JComboBox<>();
+        jPanel14 = new javax.swing.JPanel();
         btnReporteMensual = new javax.swing.JButton();
-        btnReportePlato = new javax.swing.JButton();
         txtmes = new javax.swing.JComboBox<>();
+        jPanel15 = new javax.swing.JPanel();
+        btnReportePlato = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         txtVendedor = new javax.swing.JLabel();
         lbTitulo = new javax.swing.JPanel();
@@ -422,6 +428,16 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel18.setText("Mesa");
 
+        btnGuardarPedido1.setBackground(new java.awt.Color(153, 204, 255));
+        btnGuardarPedido1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardarPedido1.setText("Guardar Pedido");
+        btnGuardarPedido1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        btnGuardarPedido1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarPedido1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -449,7 +465,10 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(numMesaPed, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(124, 124, 124)
                                     .addComponent(btnGuardarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel18))
+                                .addComponent(jLabel18)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(210, 210, 210)
+                                    .addComponent(btnGuardarPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel13)
@@ -490,7 +509,9 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(txTotalPed))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
-                                .addComponent(btnGuardarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGuardarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(btnGuardarPedido1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(IdSalaPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -500,7 +521,7 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(jLabel17)
                                     .addComponent(jLabel18)))))
                     .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos", jPanel3);
@@ -1286,19 +1307,36 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtdia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReporteDiario, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(btnReporteDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtdia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
+        jPanel14.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        jPanel14.setForeground(new java.awt.Color(102, 204, 255));
+
         btnReporteMensual.setText("Reporte Mensual");
         btnReporteMensual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
         btnReporteMensual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteMensualActionPerformed(evt);
-            }
-        });
-
-        btnReportePlato.setText("Reporte Venta por Plato");
-        btnReportePlato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
-        btnReportePlato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportePlatoActionPerformed(evt);
             }
         });
 
@@ -1309,31 +1347,54 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtmes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReporteMensual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReporteDiario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReportePlato, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                .addContainerGap(70, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnReporteMensual, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(txtmes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(btnReporteDiario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
                 .addComponent(btnReporteMensual, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtmes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
+        jPanel15.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
+        jPanel15.setForeground(new java.awt.Color(102, 204, 255));
+
+        btnReportePlato.setText("Reporte Venta por Plato");
+        btnReportePlato.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        btnReportePlato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportePlatoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addComponent(btnReportePlato, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
                 .addComponent(btnReportePlato, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlResportesLayout = new javax.swing.GroupLayout(pnlResportes);
@@ -1343,13 +1404,20 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(pnlResportesLayout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(658, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         pnlResportesLayout.setVerticalGroup(
             pnlResportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlResportesLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlResportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -1751,6 +1819,12 @@ public class Principal extends javax.swing.JFrame {
             setVisible(true);
             txtmes.addItem(mes);
         }
+        
+        List<String> fechas = reportes.obtenerFechasDisponibles();
+        for (String fecha : fechas) {
+            setVisible(true);
+            txtdia.addItem(fecha);
+        }
        
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
@@ -1771,38 +1845,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPDFActionPerformed
 
     private void btnReporteDiarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteDiarioActionPerformed
-
+     
+        String fechaSeleccionada = (String) txtdia.getSelectedItem();
         try {
-            reportes.generarReporteVentasPorDiaEnPDF();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(null, "Reporte de Ventas por Día generado con éxito.");
-        
-    }//GEN-LAST:event_btnReporteDiarioActionPerformed
-
-    private void btnReportePlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePlatoActionPerformed
-        try {
-            reportes.generarReporteCantidadPorPlatoEnPDF();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(null, "Reporte de Cantidad por Plato generado con éxito.");
-    }//GEN-LAST:event_btnReportePlatoActionPerformed
-
-    private void btnReporteMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteMensualActionPerformed
-        String mesSeleccionado = (String) txtmes.getSelectedItem();
-        try {
-            reportes.generarReporteVentasPorMesEnPDF(mesSeleccionado);
+            reportes.generarReporteVentasPorDiaEnPDF(fechaSeleccionada);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_btnReporteMensualActionPerformed
-
-    private void txtmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmesActionPerformed
-
         
-    }//GEN-LAST:event_txtmesActionPerformed
+    }//GEN-LAST:event_btnReporteDiarioActionPerformed
 
     private void tfRolUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRolUsuarioActionPerformed
         // TODO add your handling code here:
@@ -1857,6 +1908,56 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona un plato para habilitar.");
         }
     }//GEN-LAST:event_btnActPlatActionPerformed
+
+    private void btnGuardarPedido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPedido1ActionPerformed
+    if (mesaSeleccionada != -1) {  // Verificar que haya una mesa seleccionada
+        int id_sala = Integer.parseInt(IdSalaPed.getText());  // Obtener la sala actual (ya lo tienes disponible)
+        
+        // Actualizar el estado a "RESERVADO" en la base de datos para la mesa seleccionada
+        pedFunc.reservarMesa(mesaSeleccionada, id_sala);  // Esta línea actualiza el estado en la BD
+        
+        // Cambiar el color del botón de la mesa seleccionada a amarillo (reservado)
+        Component[] componentes = PanelMesas.getComponents();
+        for (Component componente : componentes) {
+            if (componente instanceof JButton) {
+                JButton boton = (JButton) componente;
+                if (boton.getText().contains("MESA N°: " + mesaSeleccionada)) {
+                    boton.setBackground(new Color(255, 255, 0));  // Amarillo para reservado
+                }
+            }
+        }
+
+        // Mostrar mensaje de confirmación
+        JOptionPane.showMessageDialog(null, "Mesa " + mesaSeleccionada + " reservada.");
+        
+        // Cambiar al panel de mesas para que el usuario vea el cambio
+        jTabbedPane1.setSelectedIndex(1);  // Cambia al panel donde se muestran las mesas
+    } else {
+        JOptionPane.showMessageDialog(null, "Seleccione una mesa antes de reservar.");
+    }
+    }//GEN-LAST:event_btnGuardarPedido1ActionPerformed
+
+    private void btnReportePlatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePlatoActionPerformed
+        try {
+            reportes.generarReporteCantidadPorPlatoEnPDF();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(null, "Reporte de Cantidad por Plato generado con éxito.");
+    }//GEN-LAST:event_btnReportePlatoActionPerformed
+
+    private void txtmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmesActionPerformed
+
+    }//GEN-LAST:event_txtmesActionPerformed
+
+    private void btnReporteMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteMensualActionPerformed
+        String mesSeleccionado = (String) txtmes.getSelectedItem();
+        try {
+            reportes.generarReporteVentasPorMesEnPDF(mesSeleccionado);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnReporteMensualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1919,6 +2020,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarSala;
     private javax.swing.JButton btnFinaliz;
     private javax.swing.JButton btnGuardarPedido;
+    private javax.swing.JButton btnGuardarPedido1;
     private javax.swing.JButton btnNuevaSala;
     private javax.swing.JButton btnNuevoPlato;
     private javax.swing.JButton btnPDF;
@@ -1960,6 +2062,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel1S;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2006,6 +2110,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdSalaFinal;
     private javax.swing.JTextField txtNumMesaFinal;
     private javax.swing.JLabel txtVendedor;
+    private javax.swing.JComboBox<String> txtdia;
     private javax.swing.JComboBox<String> txtmes;
     // End of variables declaration//GEN-END:variables
 
@@ -2180,24 +2285,38 @@ public void verDetallePedido(int id_pedido) {
         }
     }
     
+    
+    
+    
     private void panelMesas(int id_sala, int cant) {
+        PanelMesas.removeAll();  // Limpiar el panel de mesas cada vez que lo recargues
         for (int i = 1; i <= cant; i++) {
             int num_mesa = i;
-            //verificar estado
             JButton boton = new JButton("MESA N°: " + i, new ImageIcon(getClass().getResource("/Img/mesa.png")));
             boton.setHorizontalTextPosition(JButton.CENTER);
             boton.setVerticalTextPosition(JButton.BOTTOM);
-            int verificar = pedFunc.verificarStado(num_mesa, id_sala);
-            if (verificar > 0) {
-                boton.setBackground(new Color(255, 51, 51));
+
+            // Verificar estado de la mesa en la base de datos
+            String estado = pedFunc.obtenerEstadoMesa(num_mesa, id_sala);  // Consulta en la BD
+
+            // Asignar colores según el estado de la mesa
+            if (estado.equals("PENDIENTE")) {
+                boton.setBackground(new Color(255, 51, 51));  // Rojo para pendientes
+            } else if (estado.equals("RESERVADO")) {
+                boton.setBackground(new Color(255, 255, 0));  // Amarillo para reservadas
             } else {
-                boton.setBackground(new Color(0, 102, 102));
+                boton.setBackground(new Color(0, 102, 102));  // Verde para mesas libres
             }
+
             boton.setForeground(Color.WHITE);
             boton.setFocusable(false);
             boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
             PanelMesas.add(boton);
+
+            // Acción del botón al hacer clic sobre la mesa
             boton.addActionListener((ActionEvent e) -> {
+                mesaSeleccionada = num_mesa;  // Almacenar el número de mesa seleccionada
+                int verificar = pedFunc.verificarStado(num_mesa, id_sala);  // Verificar si hay un pedido para la mesa
                 if (verificar > 0) {
                     LimpiarTabla();
                     verPedido(verificar);
@@ -2214,7 +2333,47 @@ public void verDetallePedido(int id_pedido) {
                 }
             });
         }
+        PanelMesas.revalidate();  // Refrescar el panel de mesas
+        PanelMesas.repaint();  // Repintar el panel con las mesas actualizadas
     }
+
+    
+    
+//    private void panelMesas(int id_sala, int cant) {
+//        for (int i = 1; i <= cant; i++) {
+//            int num_mesa = i;
+//            //verificar estado
+//            JButton boton = new JButton("MESA N°: " + i, new ImageIcon(getClass().getResource("/Img/mesa.png")));
+//            boton.setHorizontalTextPosition(JButton.CENTER);
+//            boton.setVerticalTextPosition(JButton.BOTTOM);
+//            int verificar = pedFunc.verificarStado(num_mesa, id_sala);
+//            if (verificar > 0) {
+//                boton.setBackground(new Color(255, 51, 51));
+//            } else {
+//                boton.setBackground(new Color(0, 102, 102));
+//            }
+//            boton.setForeground(Color.WHITE);
+//            boton.setFocusable(false);
+//            boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//            PanelMesas.add(boton);
+//            boton.addActionListener((ActionEvent e) -> {
+//                if (verificar > 0) {
+//                    LimpiarTabla();
+//                    verPedido(verificar);
+//                    verDetallePedido(verificar);
+//                    btnFinaliz.setEnabled(true);
+//                    btnPDF.setEnabled(false);
+//                    jTabbedPane1.setSelectedIndex(3);
+//                } else {
+//                    LimpiarTabla();
+//                    ListarPlatos(TablaPlato2);
+//                    jTabbedPane1.setSelectedIndex(2);
+//                    IdSalaPed.setText("" + id_sala);
+//                    numMesaPed.setText("" + num_mesa);
+//                }
+//            });
+//        }
+//    }
 
     private void cargarPlatosDisponibles() {
         modelo.setRowCount(0);

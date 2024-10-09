@@ -76,6 +76,45 @@ public class PedidoFunc {
         return id_pedido;
     }
     
+    public void reservarMesa(int mesa, int id_sala) {
+        String sql = "UPDATE pedidos SET estado = ? WHERE num_mesa = ? AND id_sala = ?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "RESERVADO");
+            ps.setInt(2, mesa);
+            ps.setInt(3, id_sala);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    
+    public String obtenerEstadoMesa(int mesa, int id_sala) {
+        String estado = "";
+        String sql = "SELECT estado FROM pedidos WHERE num_mesa=? AND id_sala=? AND (estado = ? OR estado = ?)";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, mesa);
+            ps.setInt(2, id_sala);
+            ps.setString(3, "PENDIENTE");
+            ps.setString(4, "RESERVADO");
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                estado = rs.getString("estado");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return estado;
+    }
+    
+
+    
+    
+    
     public int RegistrarPedido(Pedido ped){
         String sql = "INSERT INTO pedidos (id_sala, num_mesa, total, usuario) VALUES (?,?,?,?)";
         try {
